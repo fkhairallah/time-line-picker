@@ -218,8 +218,8 @@ new Vue({
     if (zoom == 'no') this.zoomForced = 'no';
     if (zoom == 'force') this.zoomForced = 'force';
 
-    
-  
+
+
 
     // set label for y axis and note the language select; default is german
     let yLabel = this._selectLang(this.currLang);
@@ -248,7 +248,7 @@ new Vue({
 
     // retrieve the name of the timeline
     if (this.urlParamLabelName) {
-      console.log("Retrieving ", this.urlParamLabelName );
+      console.log("Retrieving ", this.urlParamLabelName);
       this.$http.get(this.ip + this.urlParamLabelName + '/state').then(response => {
         if (response.status === 200) {
           console.log("Got " + response.data);
@@ -256,15 +256,15 @@ new Vue({
           this.showNameItem = true;
         }
         else {
-        console.log('warn in API call; transfered data is empty or not valid',response.status);
-       }
+          console.log('warn in API call; transfered data is empty or not valid', response.status);
+        }
       }, response => {
         // error callback
         console.log('error in nameItem API request to openHAB')
       });
     }
 
-  // retrieve the transferItem object
+    // retrieve the transferItem object
     this.$http.get(this.ip + this.urlParamItemName + '/state').then(response => {
       this.apiRequestBody = response.body;
 
@@ -340,7 +340,7 @@ new Vue({
   },
   async beforeUnmount() {
     console.log('before unmounting');
- },
+  },
 
   beforeDestroy() {
     window.removeEventListener('resize', this.screenChanged);
@@ -374,6 +374,17 @@ new Vue({
     },
     setInterval() {
       this.secPrompt = true;
+    },
+    copyMonday() { // copy Monday's data into the rest of the week
+      console.log('All days same as monday');
+      for(var i=2; i<8;i++) // Tuesday - Sunday
+        this.initValue[i].value.forEach((v,j)=> {
+          if (this.initValue[i].value[j] != this.initValue[1].value[j]) {
+            this.initValue[i].value[j] = this.initValue[1].value[j]
+            Vue.set(this.initValue[i]['value'], j, this.initValue[1].value[j]);
+          }
+        });
+      
     },
     saveInterval() {
 

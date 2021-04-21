@@ -6,5 +6,6 @@ https://gitlab.com/RNTs_3/openhab-timeline-picker
 
 # Modifications
 - Make colorset display more prominent
+- Change to allow default host to be used if IP not provided
 - Add functionality to display and change a timeline label
 - Added functionality to copy 'Monday' content to the rest of the week

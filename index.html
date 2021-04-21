@@ -108,6 +108,10 @@
             </span>
           </button>
           <span class="space"></span>
+          <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect" @click="copyMonday()">
+            Make all Days Like Monday
+          </button>
+          <span class="space"></span>
           <div id="deactivate" class="activation" @click="toggleDisable" v-if="deactivation && !secPrompt && !tl_inactive">
             <div>{{line4}}</div>
           </div>
